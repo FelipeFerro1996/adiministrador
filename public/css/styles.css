@@ -1,0 +1,188 @@
+#main{
+    margin-left: 300px;
+    font-family: 'Montserrat', sans-serif;
+    /* color: white; */
+}
+
+.error{
+    color: red;
+}
+
+.invalid-feedback{
+    color: red!important;
+}
+
+.select2 {
+    width:100%!important;
+}
+
+input.error{
+    border: 1px solid red;
+}
+
+input.valid{
+    border: 1px solid green;
+}
+
+/* body *{
+    color: white!important;
+} */
+
+.form-control{
+    color: black!important;
+}
+
+.form-select{
+    color: black!important;
+}
+
+.form-select option{
+    color: black!important;
+}
+
+.select2-container--default .select2-selection--single{
+    height: 38px!important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 38px!important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 38px!important;
+}
+
+h1{
+    color: #F5F5F5;
+    text-transform: uppercase;
+    text-shadow: 2px 2px #2F4F4F;
+}
+
+.paginaConteudo{
+    background-image: linear-gradient(to bottom right, #0095f7 , #0095f7);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+
+    min-height: 100vh;
+}
+
+#subtitulo{
+    color: #DCDCDC;
+    /* font-size: 14px; */
+    font-weight: bold;
+}
+
+i.menu-mobile{
+    position: fixed;
+    color: #DCDCDC;
+    background-color: #1b2b47;
+    left: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    border-radius: 4rem;
+    cursor: pointer;
+    z-index: 10;
+    width: 45px;
+    height: 45px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#btnSair{
+    background-color: #1b2b47;
+    border: 2px solid #DCDCDC;
+    color: #DCDCDC;
+    font-weight: bold;
+    width: 70px;
+    transition: all ease-in-out 0.2s;
+}
+
+#btnSair:hover{
+    background-color: #DCDCDC;
+    border: 2px solid #1b2b47;
+    color: #1b2b47;
+}
+
+.menu-active{
+    overflow: hidden;
+}
+
+.menu-active #menu{
+    left: 0;
+}
+
+#menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #1b2b47;
+    overflow-y: auto;
+    width: 300px;
+    transition: all ease-in-out 0.5s;
+    padding: 0 15px;
+    z-index: 9997;
+}
+
+a.nav-link{
+    background-color: #1b2b47;
+    color: #DCDCDC;
+    font-weight: bold;
+}
+
+a.nav-link.active{
+    background-color: #DCDCDC;
+    color: #1b2b47!important;
+}
+
+.nav-tabs .nav-link.active{
+    background-color: #DCDCDC;
+    color: white!important;
+    border-bottom: none!important;
+}
+
+a.nav-link:hover{
+    background-color: #DCDCDC;
+    color: #1b2b47!important;
+}
+
+
+#fotoRosto{
+    height: 100px;
+    width: 100px;
+    background-image: url('/img/joe_lola.png');
+    background-position: center;
+    background-size: cover;
+    border: 5px solid #000000;
+    border-radius: 50%;
+}
+
+i:hover{
+	cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+    #menu{
+        left: -300px;
+    }
+    i.menu-mobile{
+        display: flex;
+    }
+    #main{
+        margin-left: 0;
+    }
+}
+
+label{
+    font-weight: bold;
+}
+
+.shadow{
+    box-shadow: 2px 8px 8px 2px #000080;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: white;
+}
