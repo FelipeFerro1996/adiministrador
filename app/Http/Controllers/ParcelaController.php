@@ -96,7 +96,7 @@ class ParcelaController extends Controller
             ->orderBy('parcelas.status', 'desc')
             ->orderBy('parcelas.vencimento', 'desc');
         
-        $parcelas = $query->paginate(10);
+        $parcelas = $query->get();
         
 
         return view('parcelas.parcelasMes', ['parcelas'=>$parcelas, 'mes'=> $mes]);

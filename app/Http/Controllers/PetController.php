@@ -18,7 +18,7 @@ class PetController extends Controller
 
         $pets = ServicePets::getPetsByBusca($request);
         
-        return view('pets.index', ['pets'=>$pets]);
+        return view('pets.index', ['pets'=>$pets, 'request'=>$request]);
 
     }
 

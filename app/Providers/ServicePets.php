@@ -49,7 +49,19 @@ class ServicePets extends ServiceProvider
 
         $pets = new Pet();
 
-        $pets = $pets->paginate(2);
+        if(!empty($request->nome)){
+            $pets = $pets->where('nome', 'LIKE', '%'.$request->nome.'%');
+        }
+
+        if(!empty($request->raca)){
+            $pets = $pets->where('raca', 'LIKE', '%'.$request->raca.'%');
+        }
+
+        if(!empty($request->data_nascimento)){
+            $pets = $pets->where('data_nascimento', '=', $request->data_nascimento);
+        }
+
+        $pets = $pets->paginate(10);
 
         return $pets;
 

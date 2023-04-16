@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -207,6 +208,8 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
+
+    AbstractPaginator::useBootstrap(),
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
