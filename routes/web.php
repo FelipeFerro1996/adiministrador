@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContaController;
 use App\Http\Controllers\ParcelaController;
+use App\Http\Controllers\PetController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,14 @@ Route::post('/parcelas/cadastrar', [ParcelaController::class, 'store']);
 Route::get('/parcelas/{mes}', [ParcelaController::class, 'meselecionado'])->name('parcelasMes');
 Route::get('/tipoCadastro/{tipo}', [ParcelaController::class, 'getCadastroParcelaByTipo']);
 Route::get('/pagarParcela/{id}', [ParcelaController::class, 'pagarParcela']);
+
+//pets
+Route::get('/pets', [PetController::class, 'index']);
+Route::get('/pets/create', [PetController::class, 'create']);
+Route::post('/pets/cadastrar', [PetController::class, 'store']);
+Route::get('/pets/{id}', [PetController::class, 'edit']);
+Route::delete('/pets/{id}', [PetController::class, 'destroy']);
+Route::put('pets/update/{id}', [PetController::class, 'update']);
 
 Auth::routes();
 

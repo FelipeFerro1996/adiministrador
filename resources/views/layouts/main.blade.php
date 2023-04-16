@@ -80,6 +80,10 @@
                             <li class="nav-item">
                                 <a class="nav-link <?php if($url == '/parcelas') echo 'active'; ?>" aria-current="page" href="/parcelas"><i class="fa-solid fa-house-user p-1"></i>Parcelas</a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link <?php if($url == '/pets') echo 'active'; ?>" aria-current="page" href="/pets"><i class="fa-solid fa-house-user p-1"></i>Pets</a>
+                            </li>
                             
                         </ul>
                     </div>
