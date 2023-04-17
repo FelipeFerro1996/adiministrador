@@ -3,6 +3,30 @@
         <h3 class="fw-bolder text-white">Parcelas {{$mes}}</h3>
     </div>
     <div class="card-body">
+
+        <div class="row mb-2 ">
+            <div class="col-md-12">
+                <div class="card bg-info text-dark ">
+                    <div class="card-header">
+                        Informações
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="text-success m-1"><b>Total Créditos:</b> R$ {{number_format($totalCreditos, 2, '.', ',');}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="text-danger m-1"><b>Total Débitos:</b> R$ {{number_format($totalDebitos, 2, '.', ',');}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="text-white m-1"><b>Saldo:</b> R$ {{number_format(($totalCreditos - $totalDebitos), 2, '.', ',');}}</p>
+                            </div>
+                        </div>                       
+
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="row">
             @forelse($parcelas AS &$p)

@@ -42,7 +42,6 @@
         <script>
             
             $(document).ready(()=>{
-                alert('teste1{{session('mes_parcela')}}')
                 mes = '{{session('mes_parcela')}}';
                 buscarParcelaMes(mes);
             })
