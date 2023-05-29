@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PetsRequest;
 use App\Models\Pet;
+use App\Providers\ServiceEspecie;
 use App\Providers\ServicePets;
+use App\Providers\ServiceProcedimento;
 use Illuminate\Http\Request;
 
 class PetController extends Controller
@@ -24,7 +26,9 @@ class PetController extends Controller
 
     public function create(){
 
-        return view('pets.cadastro');
+        $especies = ServiceEspecie::getAllEspecies();
+
+        return view('pets.cadastro', ['especies'=>$especies]);
 
     }
 
@@ -38,8 +42,10 @@ class PetController extends Controller
     public function edit($id=NULL){
 
         $pet = ServicePets::getPetById(id:$id);
+        $especies = ServiceEspecie::getAllEspecies();
+        $procedimentos = ServiceProcedimento::getProcedimentosByIdPet($id);
 
-        return view('pets.cadastro', ['pet'=>$pet]);
+        return view('pets.cadastro', ['pet'=>$pet, 'especies'=>$especies, 'procedimentos'=>$procedimentos]);
 
     }
 

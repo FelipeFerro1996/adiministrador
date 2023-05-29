@@ -10,4 +10,12 @@ class Pet extends Model
     use HasFactory;
     protected $filable=[];
     protected $table = 'pets';
+
+    public function procedimentos(){
+        return $this->hasMany(Procedimento::class);
+    }
+
+    public function especie(){
+        return $this->belongsTo(Especie::class);
+    }
 }

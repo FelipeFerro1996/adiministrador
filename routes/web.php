@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContaController;
 use App\Http\Controllers\ParcelaController;
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\ProcedimentoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,16 @@ Route::post('/pets/cadastrar', [PetController::class, 'store']);
 Route::get('/pets/{id}', [PetController::class, 'edit']);
 Route::delete('/pets/{id}', [PetController::class, 'destroy']);
 Route::put('pets/update/{id}', [PetController::class, 'update']);
+
+//procedimentos
+Route::get('/procedimentos/create/{id_pet?}', [ProcedimentoController::class, 'create']);
+Route::get('/procedimentos', [ProcedimentoController::class, 'index']);
+Route::get('/procedimentos/edit/{id}', [ProcedimentoController::class, 'edit']);
+Route::post('/procedimentos/insert', [ProcedimentoController::class, 'store']);
+Route::post('/procedimentos/update/{id}', [ProcedimentoController::class, 'update']);
+Route::post('/marcarRealizado/{id}', [ProcedimentoController::class, 'marcarRealizado']);
+Route::post('/desmarcarRealizado/{id}', [ProcedimentoController::class, 'desmarcarRealizado']);
+Route::delete('/procedimentos/{id}', [ProcedimentoController::class, 'destroy']);
 
 Auth::routes();
 

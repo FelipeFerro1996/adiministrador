@@ -9,4 +9,9 @@
             </a>
         </div>
     @endif
+    @if(!empty($onclick))
+        <div class="col-md-4 d-flex justify-content-end">
+            <i class="fa-solid fa-plus fa-xl text-white" onclick="{{$onclick}}" title="Cadastrar {{$subtitulo}}"></i>
+        </div>
+    @endif
 </div>

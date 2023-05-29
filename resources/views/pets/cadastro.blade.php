@@ -8,47 +8,37 @@
 
 <div class="row shadow-lg mt-2 p-2">
     <div class="col">
-        <form action="{{!empty($pet)? '/pets/update/'.$pet->id : '/pets/cadastrar' }}" class="text-white" method="POST">
-            @csrf
-            @if(!empty($pet->id))
-                @method('PUT')
-            @endif
-            <div class="row">
-                <div class="col-md-12">
-                    <label for="" class="form-label m-0">Nome</label>
-                    <input type="text" class="form-control mb-2 {{$errors->has('nome')?'is-invalid':''}}" name="nome" id="nome" value="{{old('nome')??$pet->nome??''}}">
-                    @error('nome')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
+        <div class="">
+            <ul class="nav nav-tabs " id="tabCadastroPet" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link {{(!empty(session('procedimento')) || !empty($_REQUEST['page'])) ?'':'active'}}" id="principal-tab" data-bs-toggle="tab" data-bs-target="#principal" type="button" role="tab" aria-controls="principal" aria-selected="true">
+                        Principal
+                    </button>
+                </li>
+                @if(!empty($pet->id))
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link {{!empty(session('procedimento')) || !empty($_REQUEST['page']) ?'active':''}}" id="procedimento-tab" data-bs-toggle="tab" data-bs-target="#procedimento" type="button" role="tab" aria-controls="procedimento" aria-selected="true">
+                            Procedimentos
+                        </button>
+                    </li>
+                @endif
+            </ul>
+            <div class="tab-content" id="tabCadastroPet">
+                <div class="tab-pane fade {{!empty(session('procedimento')) || !empty($_REQUEST['page'])?'':' show active'}} p-1" id="principal" role="tabpanel" aria-labelledby="principal-tab">
+                    @include('pets.abas.principal')
                 </div>
-                <div class="col-md-6">
-                    <label for="raca" class="form-label m-0">Raça</label>
-                    <input type="text" class="form-control mb-2 {{$errors->has('raca')?'is-invalid':''}}" name="raca" id="raca" value="{{old('raca')??$pet->raca??''}}">
-                    @error('raca')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
-                </div>
-                <div class="col-md-6">
-                    <label for="data_nascimento" class="form-label m-0">Data Nascimento</label>
-                    <input type="date" class="form-control mb-2 {{$errors->has('data_nascimento')?'is-invalid':''}}" name="data_nascimento" id="data_nascimento" value="{{old('data_nascimento')??$pet->data_nascimento??''}}">
-                    @error('data_nascimento')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
-                </div>
+                @if(!empty($pet->id))
+                    <div class="tab-pane fade {{!empty(session('procedimento')) || !empty($_REQUEST['page'])?' show active':''}} p-1" id="procedimento" role="tabpanel" aria-labelledby="procedimento-tab">
+                        @include('pets.abas.procedimentos')
+                    </div>
+                @endif
             </div>
-            <div class="row">
-                <div class="col">
-                    <button type="submit" class="btn btn-success">{{!empty($pet)?'Alterar':'Cadastrar'}}</button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
+
+@section('javascript')
+    <script src="{{asset('js/pets/listaPet.js')}}"></script>
+@endsection
 
 @endsection

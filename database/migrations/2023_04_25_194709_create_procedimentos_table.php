@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('procedimentos', function (Blueprint $table) {
             $table->id();
+            $table->string('descricao', 50);
+            $table->date('data_procedimento');
+            // $table->date('vencimento_procedimento');
+            $table->double('valor', 10, 2);
+            $table->integer('status')->length(1);
+            $table->foreignId('pet_id')->references('id')->on('pets');
             $table->timestamps();
         });
     }

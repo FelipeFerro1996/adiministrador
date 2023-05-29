@@ -43,11 +43,11 @@
         <table class="table text-white text-center">
             <thead>
                 <tr>
-                    <th scope="col" class="col-4">Nome</th>
-                    <th scope="col" class="col-3">Raça</th>
-                    <th scope="col" class="col-3">Data Nascimento</th>
-                    <th scope="col" class="col-1">Edita</th>
-                    <th scope="col" class="col-1">Excluir</th>
+                    <th scope="col" class="col-3">Nome</th>
+                    <th scope="col" class="col-2">Espécie</th>
+                    <th scope="col" class="col-2">Raça</th>
+                    <th scope="col" class="col-2">Data Nascimento</th>
+                    <th scope="col" class="col-2" colspan="3">ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,11 +55,15 @@
                     <tr>
                         <td>{{$p->nome}}</td>
                         <td>{{$p->raca}}</td>
+                        <td>{{$p->especie->descricao}}</td>
                         <td>{{date('d/m/Y', strtotime($p->data_nascimento))}}</td>
                         <td>
                             <a href="/pets/{{$p->id}}">
                                 <i class="fa-solid fa-pen-to-square text-white"></i>
                             </a>
+                        </td>
+                        <td>
+                            <i class="fa-solid fa-plus text-white" onclick="abrirModalcadastrarProcedimento({{$p->id}})" title="cadastrar procedimento"></i>
                         </td>
                         <td>
                             <form action="/pets/{{$p->id}}" method="POST">
@@ -81,5 +85,24 @@
         {{$pets->links();}}
     </div>
 </div>
+
+{{-- <!-- Modal -->
+<div class="modal fade" id="cadastrarProcedimento" tabindex="-1" aria-labelledby="cadastrarProcedimentoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg bg-warning">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cadastrarProcedimentoLabel">Cadastrar Procedimento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="conteudoCadastroProcedimento">
+               
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+@section('javascript')
+    <script src="{{asset('js/pets/listaPet.js')}}"></script>
+@endsection
 
 @endsection

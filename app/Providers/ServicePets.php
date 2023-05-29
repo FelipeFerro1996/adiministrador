@@ -34,6 +34,8 @@ class ServicePets extends ServiceProvider
         $pets->nome = $request->nome;
         $pets->raca = $request->raca;
         $pets->data_nascimento = $request->data_nascimento;
+        $pets->sexo = $request->sexo;
+        $pets->especie_id = $request->especie;
 
         $pets->save();
 
@@ -45,7 +47,7 @@ class ServicePets extends ServiceProvider
         return $pet;
     }
 
-    static function getPetsByBusca($request=NULL){
+    static function getPetsByBusca($request=NULL, $nao_paginar=NULL){
 
         $pets = new Pet();
 
@@ -60,8 +62,11 @@ class ServicePets extends ServiceProvider
         if(!empty($request->data_nascimento)){
             $pets = $pets->where('data_nascimento', '=', $request->data_nascimento);
         }
-
-        $pets = $pets->paginate(10);
+        if(!empty($nao_paginar)){
+            $pets = $pets->get();
+        }else{
+            $pets = $pets->paginate(10);
+        }
 
         return $pets;
 

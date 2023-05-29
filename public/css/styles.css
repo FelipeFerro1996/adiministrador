@@ -1,5 +1,5 @@
 #main{
-    margin-left: 300px;
+    margin-left: 250px;
     font-family: 'Montserrat', sans-serif;
     /* color: white; */
 }
@@ -78,7 +78,7 @@ i.menu-mobile{
     position: fixed;
     color: #DCDCDC;
     background-color: #1b2b47;
-    left: 1rem;
+    right: 1rem;
     top: 1rem;
     font-size: 1.5rem;
     border-radius: 4rem;
@@ -121,10 +121,10 @@ i.menu-mobile{
     bottom: 0;
     background: #1b2b47;
     overflow-y: auto;
-    width: 300px;
+    width: 250px;
     transition: all ease-in-out 0.5s;
     padding: 0 15px;
-    z-index: 9997;
+    z-index: 100;
 }
 
 a.nav-link{
@@ -151,8 +151,8 @@ a.nav-link:hover{
 
 
 #fotoRosto{
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     background-image: url('/img/joe_lola.png');
     background-position: center;
     background-size: cover;
@@ -189,4 +189,22 @@ label{
 
 .card{
      background-color: #0095f7!important;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+    background-color: #000080!important;
+}
+
+.nav-item .nav-link{
+    color: white!important;
+}
+
+.modal {
+    z-index: 300!important; /* Valor desejado para o z-index da modal */
+    color: red!important;
+}
+
+.modal-backdrop {
+    z-index: 299!important; /* Valor desejado para o z-index da modal */
+    color: red!important;
 }

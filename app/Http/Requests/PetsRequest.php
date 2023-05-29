@@ -24,7 +24,9 @@ class PetsRequest extends FormRequest
         return [
             'nome'=>'required|min:2|max:50',
             'raca'=>'required|min:2|max:25',
-            'data_nascimento'=>'required'
+            'data_nascimento'=>'required',
+            'sexo'=>'required',
+            'especie'=>'required',
         ];
     }
 
@@ -37,7 +39,9 @@ class PetsRequest extends FormRequest
             'raca.required'=>'A raça é obrigatória',
             'raca.min'=>'A raça deve conter ao menos dois caracteres',
             'raca.max'=>'A raça deve conter no máximo 25 caracteres',
-            'daa_nascimento.required'=>'A data de nascimento é obrigatória',
+            'data_nascimento.required'=>'A data de nascimento é obrigatória',
+            'sexo.required'=>'O sexo é obrigatório',
+            'especie.required'=>'A espécie é obrigatória'
         ];
     }
 }
