@@ -47,7 +47,11 @@
     </div>
 </div>
 
-@include('procedimentos.listaProcedimento')
+<div class="row mt-2 shadow-lg">
+    <div class="col">
+        @include('procedimentos.listaProcedimento')
+    </div>
+</div>
 
 @section('javascript')
     <script src="{{asset('js/pets/listaPet.js')}}"></script>

@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-4 p-2">
             <label for="" class="form-label">Pet</label>
-            <select name="id_pet" id="id_pet" {{!empty($pet->id)?'disabled':''}} class="select2 form-select" required>
+            <select name="id_pet" id="id_pet" class="select2 form-select" required>
                 <option value="">Selecione</option>
                 @foreach($pets as &$p)
                     <option value="{{$p->id}}" {{$p->id == ($pet->id??'') ? 'selected readonly' : '' }}>{{$p->nome}}</option>
