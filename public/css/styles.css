@@ -208,3 +208,8 @@ label{
     z-index: 299!important; /* Valor desejado para o z-index da modal */
     color: red!important;
 }
+
+.table-rounded {
+    border-radius: 5px;
+    overflow: hidden;
+}

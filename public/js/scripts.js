@@ -12,6 +12,18 @@ menuMobile.addEventListener("click", () => {
     body.classList.toggle('menu-active')
 });
 
+$(document).ready(function(){
+    $('.cpf').mask('000.000.000-00');
+    $('.phone').mask('(00) 00000-0000');
+    $('.money').mask('#0.00', {reverse: true});
+    
+    $('.excluirForm').click(function(){
+        if(confirm('Deseja realmente excluir?')){
+            $(this).closest('form').submit();
+        }
+    });
+});
+
 // $(document).ready(()=>{
 //     $('.form-select').select2();
 // })

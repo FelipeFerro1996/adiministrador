@@ -37,12 +37,17 @@ Route::get('/tipoCadastro/{tipo}', [ParcelaController::class, 'getCadastroParcel
 Route::get('/pagarParcela/{id}', [ParcelaController::class, 'pagarParcela']);
 
 //pets
-Route::get('/pets', [PetController::class, 'index']);
-Route::get('/pets/create', [PetController::class, 'create']);
-Route::post('/pets/cadastrar', [PetController::class, 'store']);
-Route::get('/pets/{id}', [PetController::class, 'edit']);
-Route::delete('/pets/{id}', [PetController::class, 'destroy']);
-Route::put('pets/update/{id}', [PetController::class, 'update']);
+Route::prefix('pets')->group(function () {
+   
+    Route::get('', [PetController::class, 'index'])->name('listarPets');
+    Route::get('/create', [PetController::class, 'create'])->name('cadastroPet');
+    Route::post('/cadastrar', [PetController::class, 'store'])->name('insertPet');
+    Route::get('/{id}', [PetController::class, 'edit'])->name('editarPet');
+    Route::delete('/{id}', [PetController::class, 'destroy'])->name('removePet');
+    Route::put('/update/{id}', [PetController::class, 'update'])->name('atualizaPet');
+
+});
+
 
 //procedimentos
 Route::get('/procedimentos/create/{id_pet?}', [ProcedimentoController::class, 'create']);

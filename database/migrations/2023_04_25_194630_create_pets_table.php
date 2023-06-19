@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('sexo')->length(1);
             $table->foreignId('especie_id')->references('id')->on('especies');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

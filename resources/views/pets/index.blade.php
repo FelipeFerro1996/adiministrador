@@ -4,85 +4,71 @@
 
 @section('content')
 
-@include('componentes.cabecalhoPagina', ['titulo'=>'Pets', 'subtitulo'=>'lista de Pets', 'linkcadastro'=> '/pets/create'])
+<div class="card">
+    <div class="card-body">
+        @include('componentes.cabecalhoPagina', ['titulo'=>'Pets', 'subtitulo'=>'lista de Pets', 'linkcadastro'=> route('cadastroPet')])
 
-<div class="row shadow-lg mt-2">
-    <div class="col card text-white">
-        <div class="card-header">
-            Busca
-        </div>
-        <div class="card-body">
-            <form action="/pets" method="GET">
-                <div class="row">
-                    <div class="col-md-12 mb-2">
-                        <label for="nome">Nome</label>
-                        <input type="text" name="nome" class="form-control form-control-sm" value="{{$request->nome??''}}">
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <label for="raca">Raça</label>
-                        <input type="text" name="raca" class="form-control form-control-sm" value="{{$request->raca??''}}">
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <label for="data_nascimento">Data nascimento</label>
-                        <input type="date" name="data_nascimento" class="form-control form-control-sm" value="{{$request->data_nascimento??''}}">
+        <div class="accordion mt-2 mb-2" id="accordionBuscaPet">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button {{!empty($request->busca)?'':'collapsed'}} p-2" type="button" data-bs-toggle="collapse" data-bs-target="#buscaPet" aria-expanded="{{!empty($request->busca)?'true':'false'}}" aria-controls="buscaPet">
+                    Busca
+                    </button>
+                </h2>
+                <div id="buscaPet" class="accordion-collapse {{!empty($request->busca)?'':'collapse'}}" data-bs-parent="#accordionBuscaPet">
+                    <div class="accordion-body">
+                        <form action="{{route('listarPets')}}" method="GET">
+                            <input type="hidden" value="1" name="busca">
+                            <div class="row">
+                                <div class="col-md-12 p-1">
+                                    @include('componentes.campoDinamicoComponente', [
+                                        'label_descricao'=>'Nome',
+                                        'id_name'=>'nome',
+                                        'required'=>'',
+                                        'tipo'=>'input',
+                                        'type'=>'text',
+                                        'value'=>$request->nome??''
+                                    ])
+                                </div>
+                                <div class="col-md-6 p-1">
+                                    @include('componentes.campoDinamicoComponente', [
+                                        'label_descricao'=>'Raça',
+                                        'id_name'=>'raca',
+                                        'required'=>'',
+                                        'tipo'=>'input',
+                                        'type'=>'text',
+                                        'value'=>$request->raca??''
+                                    ])
+                                </div>
+                                <div class="col-md-6 p-1">
+                                    @include('componentes.campoDinamicoComponente', [
+                                        'label_descricao'=>'Raça',
+                                        'id_name'=>'data_nascimento',
+                                        'required'=>'',
+                                        'tipo'=>'input',
+                                        'type'=>'date',
+                                        'value'=>$request->data_nascimento??''
+                                    ])
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-success btn-sm" type="submit">Buscar</button>
+                                    <a href="{{route('listarPets')}}" class="btn btn-sm btn-warning" type="button">Limpar</a>
+                                </div>
+                            </div>
+                        </form> 
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <button class="btn btn-success btn-sm" type="submit">Buscar</button>
-                        <a href="/pets" class="btn btn-sm btn-warning" type="button">Limpar</a>
-                    </div>
-                </div>
-            </form> 
+            </div>
         </div>
-    </div>
-</div>
 
-<div class="row shadow-lg mt-2">
-    <div class="col table-responsive">
-        <table class="table text-white text-center">
-            <thead>
-                <tr>
-                    <th scope="col" class="col-3">Nome</th>
-                    <th scope="col" class="col-2">Espécie</th>
-                    <th scope="col" class="col-2">Raça</th>
-                    <th scope="col" class="col-2">Data Nascimento</th>
-                    <th scope="col" class="col-2" colspan="3">ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($pets as &$p)
-                    <tr>
-                        <td>{{$p->nome}}</td>
-                        <td>{{$p->raca}}</td>
-                        <td>{{$p->especie->descricao}}</td>
-                        <td>{{date('d/m/Y', strtotime($p->data_nascimento))}}</td>
-                        <td>
-                            <a href="/pets/{{$p->id}}">
-                                <i class="fa-solid fa-pen-to-square text-white"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <i class="fa-solid fa-plus text-white" onclick="abrirModalcadastrarProcedimento({{$p->id}})" title="cadastrar procedimento"></i>
-                        </td>
-                        <td>
-                            <form action="/pets/{{$p->id}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <i class="fa-solid fa-trash-can text-danger" onclick="if(confirm('Deseja excluir esse pet?')){this.closest('form').submit();}"></i>
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4" class="p-3 text-center">Nenhum registro cadastrado</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-    <div class="col-12 m-1 d-flex justify-content-end">
-        {{$pets->links();}}
+        <div class="row">
+            <div class="col table-responsive">
+                @include('componentes.tabelaComponente',['objetos'=>$pets, 'tableHead'=>$tableHead])
+            </div>
+        </div>
+
     </div>
 </div>
 

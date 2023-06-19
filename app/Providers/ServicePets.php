@@ -66,6 +66,14 @@ class ServicePets extends ServiceProvider
             $pets = $pets->get();
         }else{
             $pets = $pets->paginate(10);
+
+            foreach($pets as &$pet){
+                $pet->botaoEditar = view('componentes.botaoEditarComponente', ['rota'=>route('editarPet', [ 'id'=>$pet->id])]);
+                $pet->botaoDelete = view('componentes.botaoDeleteComponente', ['rota'=>route('removePet', ['id'=>$pet->id])]);
+                $pet->especie = $pet->especie->descricao;
+                $pet->data_nascimento = date('d/m/Y', strtotime($pet->data_nascimento));
+            }
+
         }
 
         return $pets;
@@ -75,5 +83,36 @@ class ServicePets extends ServiceProvider
     static function excluirPet($id=NULL){
         $pet = Pet::findOrFail($id);
         $pet->delete();
+    }
+
+    static function getPeTableHead(){
+        $tableHead = [
+            (object)[
+                'campo'=>'nome',
+                'descricao'=>'Nome',
+            ],
+            (object)[
+                'campo'=>'especie',
+                'descricao'=>'Espécie',
+            ],
+            (object)[
+                'campo'=>'raca',
+                'descricao'=>'Raça',
+            ],
+            (object)[
+                'campo'=>'data_nascimento',
+                'descricao'=>'Data Nascimento',
+            ],
+            (object)[
+                'campo'=>'botaoEditar',
+                'descricao'=>'Editar',
+            ],
+            (object)[
+                'campo'=>'botaoDelete',
+                'descricao'=>'Excluir',
+            ],
+        ];
+
+        return $tableHead;
     }
 }

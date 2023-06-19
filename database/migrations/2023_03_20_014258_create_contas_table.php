@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('parcelas')->length(11);
             $table->double('total', 10, 2);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

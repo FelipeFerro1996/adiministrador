@@ -11,7 +11,7 @@
 
 
         <link rel="stylesheet" href="{{asset('select2/select2.min.css')}}">
-        <link rel="stylesheet" href="{{asset('bootstrap-5.2.3-dist/css/bootstrap.css')}}">
+        <link rel="stylesheet" href="{{asset('bootstrap-5.3.0-dist/css/bootstrap.css')}}">
 
         <!-- font awesome -->
         <link rel="stylesheet" href="{{asset('fontawesome-6.0/css/all.css')}}">
@@ -66,8 +66,8 @@
         <script src="{{asset('jquery/jquery.mask.js')}}"></script>
 
         {{--bootstrap--}}
-        <script src="{{asset('bootstrap-5.2.3-dist/js/bootstrap.js')}}"></script>
-        <script src="{{asset('bootstrap-5.2.3-dist/js/bootstrap.bundle.js')}}"></script>
+        {{-- <script src="{{asset('bootstrap-5.3.0-dist/js/bootstrap.js')}}"></script> --}}
+        <script src="{{asset('bootstrap-5.3.0-dist/js/bootstrap.bundle.js')}}"></script>
 
         {{--jquery Principal--}}
         <script src="{{asset('js/scripts.js')}}"></script>

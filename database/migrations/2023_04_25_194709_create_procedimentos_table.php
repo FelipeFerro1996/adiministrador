@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('status')->length(1);
             $table->foreignId('pet_id')->references('id')->on('pets');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

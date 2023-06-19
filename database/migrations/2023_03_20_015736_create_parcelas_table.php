@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('status')->length(11);
             $table->foreignId('conta_id')->references('id')->on('contas');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

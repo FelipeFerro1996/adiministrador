@@ -1,62 +1,72 @@
-<form action="{{!empty($pet)? '/pets/update/'.$pet->id : '/pets/cadastrar' }}" class="text-white" method="POST">
+<form action="{{!empty($pet)? route('atualizaPet', ['id', $pet->id]) : route('insertPet') }}" class="text-white" method="POST">
     @csrf
     @if(!empty($pet->id))
         @method('PUT')
     @endif
     <div class="row">
         <div class="p-2 col-md-5">
-            <label for="" class="form-label m-0">Espécie</label>
-            <select name="especie" id="especie" class="form-control select2 {{$errors->has('especie')?'is-invalid':''}}">
-                <option value="">Selecione</option>
-                @foreach($especies as &$especie)
-                    <option value="{{$especie->id}}" {{(($pet->especie_id??'') == $especie->id || old('especie') == $especie->id) ? 'selected' : ''}}>{{$especie->descricao}}</option>
-                @endforeach
-            </select>
-            @error('especie')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
+            @include('componentes.campoDinamicoComponente', [
+                'label_descricao'=>'Espécie',
+                'id_name'=>'especie',
+                'required'=>'required',
+                'tipo'=>'select',
+                'objeto'=>$especies??[],
+                'value'=>($pet->especie_id??old('especie')??''),
+                'campo_valor'=>'id',
+                'campo_descricao'=>'descricao',
+                'class_campo'=>($errors->has('especie')?'is-invalid':''),
+                'mensagem'=>($errors->has('especie')?$errors->first('especie'):''),
+            ])
         </div>
         <div class="p-2 col-md-7">
-            <label for="" class="form-label m-0">Nome</label>
-            <input type="text" class="form-control  {{$errors->has('nome')?'is-invalid':''}}" name="nome" id="nome" value="{{old('nome')??$pet->nome??''}}">
-            @error('nome')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
+            @include('componentes.campoDinamicoComponente', [
+                'label_descricao'=>'Nome',
+                'id_name'=>'nome',
+                'required'=>'required',
+                'tipo'=>'input',
+                'type'=>'text',
+                'value'=>($pet->nome??old('nome')??''),
+                'class_campo'=>($errors->has('nome')?'is-invalid':''),
+                'mensagem'=>($errors->has('nome')?$errors->first('nome'):''),
+            ])
         </div>
         <div class="p-2 col-md-4">
-            <label for="sexo" class="form-label m-0">Sexo</label>
-            <select name="sexo" id="sexo" class="select2 form-control {{$errors->has('nome')?'is-invalid':''}}">
-                <option value="">Selecione</option>
-                <option value="1" {{($pet->sexo??'') == 1 ? 'selected' : ''}}>Macho</option>
-                <option value="2" {{($pet->sexo??'') == 2 ? 'selected' : ''}}>Fêmea</option>
-            </select>
-            @error('sexo')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
+            @include('componentes.campoDinamicoComponente', [
+                'label_descricao'=>'Espécie',
+                'id_name'=>'sexo',
+                'required'=>'required',
+                'tipo'=>'select',
+                'objeto'=>[(object)['id'=>'1', 'sexo'=>'Macho'], (object)['id'=>'2', 'sexo'=>'Fêmea']],
+                'value'=>($pet->sexo??old('sexo')??''),
+                'campo_valor'=>'id',
+                'campo_descricao'=>'sexo',
+                'class_campo'=>($errors->has('sexo')?'is-invalid':''),
+                'mensagem'=>($errors->has('sexo')?$errors->first('sexo'):''),
+            ])
         </div>
         <div class="p-2 col-md-4">
-            <label for="raca" class="form-label m-0">Raça</label>
-            <input type="text" class="form-control  {{$errors->has('raca')?'is-invalid':''}}" name="raca" id="raca" value="{{old('raca')??$pet->raca??''}}">
-            @error('raca')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
+            @include('componentes.campoDinamicoComponente', [
+                'label_descricao'=>'Raça',
+                'id_name'=>'raca',
+                'required'=>'required',
+                'tipo'=>'input',
+                'type'=>'text',
+                'value'=>($pet->raca??old('raca')??''),
+                'class_campo'=>($errors->has('raca')?'is-invalid':''),
+                'mensagem'=>($errors->has('raca')?$errors->first('raca'):''),
+            ])
         </div>
         <div class="p-2 col-md-4">
-            <label for="data_nascimento" class="form-label m-0">Data Nascimento</label>
-            <input type="date" class="form-control  {{$errors->has('data_nascimento')?'is-invalid':''}}" name="data_nascimento" id="data_nascimento" value="{{old('data_nascimento')??$pet->data_nascimento??''}}">
-            @error('data_nascimento')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
+            @include('componentes.campoDinamicoComponente', [
+                'label_descricao'=>'Data Nascimento',
+                'id_name'=>'data_nascimento',
+                'required'=>'required',
+                'tipo'=>'input',
+                'type'=>'date',
+                'value'=>($pet->data_nascimento??old('data_nascimento')??''),
+                'class_campo'=>($errors->has('data_nascimento')?'is-invalid':''),
+                'mensagem'=>($errors->has('data_nascimento')?$errors->first('data_nascimento'):''),
+            ])
         </div>
     </div>
     <div class="row">
