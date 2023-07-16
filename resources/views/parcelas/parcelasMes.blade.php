@@ -5,25 +5,34 @@
 </div>
 
 <div class="row">
-    <div class="col">
-        <table class="table">
-            <thead>
-                <tr>
-                    <td scope="col" class="bg-success  "><b>Total Créditos</b></td>
-                    <td scope="col" class="bg-danger  "><b>Total Débitos</b></td>
-                    <td scope="col" class="bg-primary  "><b>Saldo</b></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="bg-success ">R$ {{number_format($totalCreditos, 2, '.', ',');}}</td>
-                    <td class="bg-danger ">R$ {{number_format($totalDebitos, 2, '.', ',');}}</td>
-                    <td class="bg-primary ">R$ {{number_format(($totalCreditos - $totalDebitos), 2, '.', ',');}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table" >
-            <thead>
+    <div class="col-md-4">
+        <div class="small-box bg-primary text-center">
+            <div class="inner">
+                <h3>R$ {{number_format($totalCreditos, 2, '.', ',');}}</h3>
+                <p>TOTAL CRÉDITOS</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="small-box bg-warning text-center">
+            <div class="inner">
+                <h3>R$ {{number_format($totalDebitos, 2, '.', ',');}}</h3>
+                <p>TOTAL DÉBITOS</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="small-box bg-{{($totalCreditos - $totalDebitos) > 0 ? 'success' : 'danger'}} text-center">
+            <div class="inner">
+                <h3>R$ {{number_format(($totalCreditos - $totalDebitos), 2, '.', ',')}}</h3>
+                <p>SALDO</p>
+            </div>
+        </div>
+    </div>
+    <div class="col table-responsive">
+        {{-- <table class="table table-borderless table-striped dataTable dtr-inline table-info table-hover" > --}}
+        <table class="table table-bordered table-striped dataTable dtr-inline" >
+            <thead class="">
                 <th>Descrição</th>
                 <th>Vencimento</th>
                 <th>Nº Parcela</th>
@@ -52,7 +61,7 @@
                         </td>
                     </tr>
                 @empty
-                    <td colspan="5" class="p-1 text-center">
+                    <td colspan="6" class="p-1 text-center">
                         nenhum registro cadastrado
                     </td>
                 @endforelse
