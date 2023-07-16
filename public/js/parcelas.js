@@ -12,6 +12,7 @@ $(document).ready(()=>{
         
     })
     $(".select2").select2()
+    $("#buscarParcelasMes").trigger('click')
 })
 
 function buscarParcelaMes(mes){
@@ -33,7 +34,7 @@ function buscarTipoCadastro(tipo){
         $("#divTipoCadastroParcela").html('')
     }
     $.ajax({
-        url: "/tipoCadastro/"+tipo, // URL para onde a requisição será enviada
+        url: "/parcelas/tipoCadastro/"+tipo, // URL para onde a requisição será enviada
         dataType:'HTML',
         type: "GET", // Método HTTP usado para enviar a requisição (GET, POST, PUT, DELETE, etc.) // Dados a serem enviados com a requisição
         success: function(response) { // Função a ser executada quando a requisição for bem-sucedida

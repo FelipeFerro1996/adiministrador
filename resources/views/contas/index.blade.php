@@ -2,44 +2,32 @@
 
 @section('title', 'home')
 
-@section('content')
-
-@include('componentes.cabecalhoPagina', ['titulo'=>'Contas', 'subtitulo'=>'lista Contas', 'linkcadastro'=> '/contas/create'])
-
-<div class="row mt-2 shadow-lg">
-    <div class="col table-responsive">
-        <table class="table text-white  ">
-            <thead>
-                <tr>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Tipo Conta</th>
-                    <th scope="col">Qtd Parcela</th>
-                    <th scope="col">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($contas as &$c)
-                    <tr>
-                        <td>{{$c->descricao}}</td>
-                        <td>{{($c->tipo==1)?'Crédito':'Débito'}}</td>
-                        <td>{{$c->parcelas}}</td>
-                        <td>R$ {{number_format($c->total, 2, '.', ',');}}</td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="text-center">Nenhum registro cadastrado</td>
-                    </tr>
-                @endforelse
-                
-        </table>
-        <div class="row mt-2">
-            <div class="col d-flex justify-content-end">
-                {{ $contas->links() }}
-            </div>
-        </div>
+@section('header')
+<div class="row ">
+    <div class="col-md-10 d-flex justify-content-between p-1">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Contas</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Listagem Contas</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="col-md-2 p-1">
+        <a href={{route('cadastroConta')}} class="btn btn-primary w-100 btn-sm">
+            <i class="fa-solid fa-plus fa-lg" title="Cadastrar Cona
+            "></i>
+            Novo
+        </a>
     </div>
 </div>
+@endsection
 
+@section('content')
 
+<div class="card">
+    <div class="card-body">
+        @include('componentes.tabelaComponente', ['tableHead'=> $tableHead, 'objetos'=>$contas])
+    </div>
+</div>
 
 @endsection
