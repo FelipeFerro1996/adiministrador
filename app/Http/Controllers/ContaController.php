@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContasRequest;
 use App\Models\Conta;
 use App\Models\Parcela;
+use App\Providers\ServiceContas;
 use Illuminate\Http\Request;
 
 class ContaController extends Controller
@@ -17,9 +18,11 @@ class ContaController extends Controller
 
     public function index(){
 
-        $contas = Conta::query()->paginate(10);
+        // $contas = Conta::query()->paginate(10);
+        $contas = ServiceContas::getContasByBusca();
+        $tableHead = ServiceContas::getTableHeaderContas();
 
-        return view('contas.index', ['contas' => $contas]);
+        return view('contas.index', ['contas' => $contas, 'tableHead'=>$tableHead]);
 
     }
 
