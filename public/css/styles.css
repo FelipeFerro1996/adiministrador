@@ -78,14 +78,14 @@ i.menu-mobile{
     position: fixed;
     color: #DCDCDC;
     background-color: #1b2b47;
-    right: 1rem;
-    top: 1rem;
-    font-size: 1.5rem;
+    right: 0.5rem;
+    top: 0.5rem;
+    font-size: 1.2rem;
     border-radius: 4rem;
     cursor: pointer;
     z-index: 10;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     display: none;
     justify-content: center;
     align-items: center;
@@ -177,7 +177,8 @@ i:hover{
 }
 
 label{
-    font-weight: bold;
+    margin: 0!important;
+    padding: 0!important;
 }
 
 .shadow{
@@ -212,4 +213,8 @@ label{
 .table-rounded {
     border-radius: 5px;
     overflow: hidden;
+}
+
+.breadcrumb *{
+    color: white!important;
 }

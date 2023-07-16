@@ -24,17 +24,25 @@ use Illuminate\Support\Facades\Route;
 
 
 //contas
-Route::get('/contas', [ContaController::class, 'index']);
-Route::get('/contas/create', [ContaController::class, 'create']);
-Route::post('/contas/cadastrar', [ContaController::class, 'store']);
+Route::prefix('contas')->group(function () {
+   
+    Route::get('', [ContaController::class, 'index'])->name('listarContas');
+    Route::get('/create', [ContaController::class, 'create'])->name('cadastroConta');
+    Route::post('/insert', [ContaController::class, 'store'])->name('insertConta');
+
+});
 
 //parcelas
-Route::get('/parcelas', [ParcelaController::class, 'index']);
-Route::get('/parcelas/create/{tipo}', [ParcelaController::class, 'create']);
-Route::post('/parcelas/cadastrar', [ParcelaController::class, 'store']);
-Route::get('/parcelas/{mes}', [ParcelaController::class, 'meselecionado'])->name('parcelasMes');
-Route::get('/tipoCadastro/{tipo}', [ParcelaController::class, 'getCadastroParcelaByTipo']);
-Route::get('/pagarParcela/{id}', [ParcelaController::class, 'pagarParcela']);
+Route::prefix('parcelas')->group(function () {
+   
+    Route::get('', [ParcelaController::class, 'index'])->name('listarParcelas');
+    Route::get('/create/{tipo}', [ParcelaController::class, 'create'])->name('cadastroParcela');
+    Route::post('/cadastrar', [ParcelaController::class, 'store'])->name('insertParcela');
+    Route::get('/{mes}', [ParcelaController::class, 'meselecionado'])->name('parcelasMes');
+    Route::get('/tipoCadastro/{tipo}', [ParcelaController::class, 'getCadastroParcelaByTipo']);
+    Route::get('/pagarParcela/{id}', [ParcelaController::class, 'pagarParcela']);
+
+});
 
 //pets
 Route::prefix('pets')->group(function () {
