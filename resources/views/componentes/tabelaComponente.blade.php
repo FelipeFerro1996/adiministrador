@@ -1,4 +1,4 @@
-<table class="table table-hover dataTable dtr-inline table-hover" >
+<table class="table table-bordered table-striped dataTable dtr-inline" >
     <thead>
         <tr>
             @foreach ($tableHead as $item)

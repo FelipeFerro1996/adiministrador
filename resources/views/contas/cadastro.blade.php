@@ -16,29 +16,33 @@
                     @csrf
                     <div class="row mt-2">
                         <div class="col-md-12">
-                            <label for="descricao" class="form-label m-0">Descrição</label>
-                            <input type="text" class="form-control {{$errors->has('descricao')?'is-invalid':''}}" id="descricao" name="descricao" value="{{old('descricao')}}"> 
-                            @error('descricao')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                            @enderror
+                            @include('componentes.campoDinamicoComponente', [
+                                'label_descricao'=>'Descrição',
+                                'id_name'=>'descricao',
+                                'required'=>'required',
+                                'tipo'=>'input',
+                                'type'=>'text',
+                                'campo_descricao'=>'descricao',
+                                'class_campo'=>($errors->has('descricao')?'is-invalid':''),
+                                'mensagem'=>($errors->has('descricao')?$errors->first('descricao'):''),
+                            ])
                         </div>
                     </div>
         
                     <div class="row mt-2">
                         <div class="col-md-6">
-                            <label for="tipo_conta" class="form-label m-0">Tipo Conta</label>
-                            <select name="tipo_conta" class="form-select {{$errors->has('tipo_conta')?'is-invalid':''}}" id="tipo_conta">
-                                <option value="">Selecione</option>
-                                <option value="1" {{(old('tipo_conta') == 1 ? 'selected' : '')}}>Crédito</option>
-                                <option value="2" {{(old('tipo_conta') == 2 ? 'selected' : '')}}>Débito</option>
-                            </select>
-                            @error('tipo_conta')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                            @enderror
+                            @include('componentes.campoDinamicoComponente', [
+                                'label_descricao'=>'Tipo Conta',
+                                'id_name'=>'tipo_conta',
+                                'required'=>'required',
+                                'tipo'=>'select',
+                                'objeto'=>$tipo_conta,
+                                'value'=>(old('tipo_conta')??''),
+                                'campo_valor'=>'id',
+                                'campo_descricao'=>'descricao',
+                                'class_campo'=>($errors->has('tipo_conta')?'is-invalid':''),
+                                'mensagem'=>($errors->has('tipo_conta')?$errors->first('tipo_conta'):''),
+                            ])
                         </div>
                     </div>
         

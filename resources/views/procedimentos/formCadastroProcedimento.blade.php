@@ -1,32 +1,72 @@
 <form action="{{!empty($procedimento) ? '/procedimentos/update/'.$procedimento->id : '/procedimentos/insert'}}" method="POST">
     @csrf
     <div class="row">
-        <div class="col-md-4 p-2">
-            <label for="" class="form-label">Pet</label>
-            <select name="id_pet" id="id_pet" class="select2 form-select" required>
-                <option value="">Selecione</option>
-                @foreach($pets as &$p)
-                    <option value="{{$p->id}}" {{$p->id == ($pet->id??'') ? 'selected readonly' : '' }}>{{$p->nome}}</option>
-                @endforeach
-            </select>
+        <div class="col-md-6 p-2">
+            @include('componentes.campoDinamicoComponente', [
+                'label_descricao'=>'Pet',
+                'id_name'=>'id_pet',
+                'required'=>'required',
+                'tipo'=>'select',
+                'objeto'=>$pets??[],
+                'value'=>($pet->id??old('id_pet')??''),
+                'campo_valor'=>'id',
+                'campo_descricao'=>'nome',
+                'class_campo'=>($errors->has('id_pet')?'is-invalid':''),
+                'mensagem'=>($errors->has('id_pet')?$errors->first('id_pet'):''),
+            ])
         </div>
-        <div class="col-md-8 p-2">
-            <label for="" class="form-label">Descrição</label>
-            <input type="text" class="form-control" name="descricao" id="descricao" required value="{{old('descricao')??$procedimento->descricao??''}}">
+        <div class="col-md-6 p-2">
+            @include('componentes.campoDinamicoComponente', [
+                'label_descricao'=>'Descrição',
+                'id_name'=>'descricao',
+                'required'=>'required',
+                'tipo'=>'input',
+                'type'=>'text',
+                'value'=>($procedimento->descricao??old('descricao')??''),
+                'class_campo'=>($errors->has('descricao')?'is-invalid':''),
+                'mensagem'=>($errors->has('descricao')?$errors->first('descricao'):''),
+            ])
         </div>
         <div class="col-md-4 p-2">
-            <label for="" class="form-label">Valor</label>
-            <input type="text" class="form-control" required name="valor" id="valor" value="{{old('valor')??(!empty($procedimento->valor) ? number_format($procedimento->valor, 2, ',', '.') : '')}}">
+            @include('componentes.campoDinamicoComponente', [
+                'label_descricao'=>'Valor',
+                'id_name'=>'valor',
+                'required'=>'required',
+                'tipo'=>'input',
+                'type'=>'text',
+                'value'=>old('valor')??(!empty($procedimento->valor) ? number_format($procedimento->valor, 2, ',', '.') : ''),
+                'class_campo'=>($errors->has('valor')?'is-invalid':''),
+                'mensagem'=>($errors->has('valor')?$errors->first('valor'):''),
+            ])
         </div>
         <div class="col-md-4 p-2">
-            <label for="" class="form-label">Data Procedimento</label>
-            <input type="date" name="data_procedimento" required class="form-control" id="data_procedimento" value="{{old('data_procedimento')??$procedimento->data_procedimento??''}}">
+            @include('componentes.campoDinamicoComponente', [
+                'label_descricao'=>'Data',
+                'id_name'=>'data_procedimento',
+                'required'=>'required',
+                'tipo'=>'input',
+                'type'=>'date',
+                'value'=>old('data_procedimento')??$procedimento->data_procedimento??'',
+                'class_campo'=>($errors->has('data_procedimento')?'is-invalid':''),
+                'mensagem'=>($errors->has('data_procedimento')?$errors->first('data_procedimento'):'')
+            ])
         </div>
         <div class="col-md-4 p-2">
-            <label for="" class="form-label">&nbsp;</label>
+            @include('componentes.campoDinamicoComponente', [
+                'label_descricao'=>'Realizado',
+                'id_name'=>'status',
+                'required'=>'required',
+                'tipo'=>'select',
+                'objeto'=>[(object)['id'=>1, 'descricao'=>'Sim'], (object)['id'=>'', 'descricao'=>'Não']],
+                'value'=>($procedimento->status??old('status')??''),
+                'campo_valor'=>'id',
+                'campo_descricao'=>'descricao',
+                'class_campo'=>($errors->has('status')?'is-invalid':''),
+                'mensagem'=>($errors->has('status')?$errors->first('status'):''),
+            ])
+            <label class="form-label" for="flexSwitchCheckDefault"></label>
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" name="status" {{(old('ststus') == 1 || ($procedimento->status??'') == 1) ? 'checked' : ''}}>
-                <label class="form-check-label" for="flexSwitchCheckDefault">Realizado</label>
+                <input class="form-check-input" type="checkbox" name="status" {{(old('status') == 1 || ($procedimento->status??'') == 1) ? 'checked' : ''}}>
             </div>
         </div>
     </div>

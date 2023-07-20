@@ -28,7 +28,18 @@ class ContaController extends Controller
 
     public function create(){
 
-        return view('contas.cadastro');
+        $tipo_conta = array(
+            (object)[
+                'id'=>'1',
+                'descricao'=>'Crédito'
+            ],
+            (object)[
+                'id'=>'2',
+                'descricao'=>'Débito'
+            ]
+        );
+
+        return view('contas.cadastro', ['tipo_conta'=>$tipo_conta]);
         
     }
 

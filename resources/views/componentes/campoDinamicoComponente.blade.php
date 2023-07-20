@@ -1,7 +1,7 @@
 @if(!empty($label_descricao))
     <label 
         for="{{$id_name??''}}" 
-        class="form-label {{$label_class??''}}">
+        class="form-label {{$label_class??''}} w-100">
         
         {{$label_descricao}}:
 
@@ -41,6 +41,7 @@
         >
         @foreach ($objeto as $key => &$item)
             <option 
+                {{$value==$item->{$campo_valor} ? 'selected' : '' }}
                 value="{{$item->{$campo_valor} ?? ''}}">
                 {{$item->{$campo_descricao} ?? ''}}
             </option> 

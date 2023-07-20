@@ -40,7 +40,9 @@ class ProcedimentoController extends Controller
         $procedimento = ServiceProcedimento::getProcedimentoById($id);
         $pet = ServicePets::getPetById($procedimento->pet_id);
 
-        return view('procedimentos.formCadastroProcedimento', ['pet'=>$pet, 'procedimento'=>$procedimento]);
+        $pets = ServicePets::getPetsByBusca(nao_paginar:1);
+
+        return view('procedimentos.formCadastroProcedimento', ['pet'=>$pet, 'procedimento'=>$procedimento, 'pets'=>$pets]);
 
     }
 

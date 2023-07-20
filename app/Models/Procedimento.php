@@ -17,4 +17,8 @@ class Procedimento extends Model
     public function pet(){
         return $this->belongsTo(Pet::class);
     }
+
+    public function getDataProcedimentoFormatadaAttribute(){
+        return date('d/m/Y', strtotime($this->data_procedimento));
+    }
 }

@@ -2,11 +2,30 @@
 
 @section('title', 'Lista de Pets')
 
+@section('header')
+<div class="row ">
+    <div class="col-md-10 d-flex justify-content-between p-1">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Pets</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Listagem Pets</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="col-md-2 p-1">
+        <a href={{route('cadastroPet')}} title="Cadastrar Pet
+        " class="btn btn-primary w-100 btn-sm">
+            <i class="fa-solid fa-plus fa-lg" ></i>
+            Novo
+        </a>
+    </div>
+</div>
+@endsection
+
 @section('content')
 
 <div class="card">
     <div class="card-body">
-        @include('componentes.cabecalhoPagina', ['titulo'=>'Pets', 'subtitulo'=>'lista de Pets', 'linkcadastro'=> route('cadastroPet')])
 
         <div class="accordion mt-2 mb-2" id="accordionBuscaPet">
             <div class="accordion-item">

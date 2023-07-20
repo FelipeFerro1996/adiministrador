@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col">
-        <table class="table text-center text-white">
+        <table class="table table-bordered table-striped dataTable dtr-inline table-hover">
             <thead>
                 <tr>
                     <th scope="col">Pet</th>
@@ -17,9 +17,9 @@
                         <td>{{$p->pet->nome}}</td>
                         <td>{{$p->descricao}}</td>
                         <td> R$ {{number_format($p->valor, 2, '.', ',');}}</td>
-                        <td>{{$p->data_procedimento}}</td>
+                        <td>{{$p->data_procedimento_formatada}}</td>
                         <td>
-                            <i class="fa-solid fa-pen-to-square text-white" onclick="abrirModalalteracaoProcedimento({{$p->id}})"></i>
+                            <i class="fa-solid fa-pen-to-square cursor-pointer text-primary" onclick="abrirModalalteracaoProcedimento({{$p->id}})"></i>
                         </td>
                         <td>
                             @if($p->status == 1)

@@ -7,6 +7,7 @@
         <title>Document</title>
         
         <link rel="stylesheet" href="{{asset('select2/select2.min.css')}}">
+        <link rel="stylesheet" href="{{asset('select2/select2-bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('bootstrap-5.3.0-dist/css/bootstrap.css')}}">
 
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
@@ -92,6 +93,20 @@
 
         </div>
 
+        <div class="modal fade" id="cadastrarProcedimento" tabindex="-1" aria-labelledby="cadastrarProcedimentoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg bg-info">
+                <div class="modal-content bg-info">
+                    <div class="modal-header">
+                        <h5>Cadastrar Procedimento</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="conteudoCadastroProcedimento">
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {{--jquery--}}
         <script src="{{asset('jquery/jquery-3.6.0.min.js')}}"></script>
 
@@ -111,6 +126,15 @@
         {{--js secundarios--}}
         <script src="{{asset('js/contas.js')}}"></script>
         <script src="{{asset('js/parcelas.js')}}"></script>
+        <script src="{{asset('js/scripts.js')}}"></script>
+
+        @yield('javascript')
+
+        <script>
+            $( ".select2bootstrap" ).select2({
+                theme: "bootstrap"
+            });
+        </script>
         
     </body>
 </html>

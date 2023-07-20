@@ -33,7 +33,10 @@ function abrirModalalteracaoProcedimento(id_procedimento=null){
             $("#conteudoCadastroProcedimento").html(response)
             $("#cadastrarProcedimento").modal('show');
             $('#valor').mask('#,##0.00', {reverse:true})
-            $('.select2').select2();
+            // $('select.select2').select2();
+            $( "select.select2" ).select2({
+                theme: "bootstrap"
+            });
         },
         error: function(xhr, status, error) { // Função a ser executada quando ocorrer um erro na requisição
             console.log(error);

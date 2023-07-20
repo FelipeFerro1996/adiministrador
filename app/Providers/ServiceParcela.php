@@ -49,18 +49,22 @@ class ServiceParcela extends ServiceProvider
         // dd($conta->total);
         $conta->save();
 
+        $proximaParcela = ServiceParcela::getProximaParcela($conta->id);
+
         $data = explode('-', $request->Mes_Primeiro_vencimento);
         $mes = $data[1];
         $ano = $data[0];
 
         for($i=0; $i<$request->parcelas; $i++){
 
+            $proximaParcela++;
+
             $parcela = new Parcela();
             $parcela->conta_id = $request->conta_id;
             $parcela->valor = $totalParcela;
             $parcela->total_pago = 0;
             $parcela->status = 1;
-            $parcela->numero = $i+1;
+            $parcela->numero = $proximaParcela;
 
             $m = (int)$mes+$i;
             if($m==13){
@@ -71,9 +75,6 @@ class ServiceParcela extends ServiceProvider
             }
             
             $parcela->vencimento = $ano.'-'.( ($m<10) ? '0'.$m : $m).'-'.$request->dia_vencimento;
-
-            
-    
             $parcela->save();
         }
 
@@ -99,5 +100,12 @@ class ServiceParcela extends ServiceProvider
 
         return $totalParcela;
 
+    }
+
+    static function getProximaParcela($conta_id){
+        $proxima = new Parcela();
+        $proxima = $proxima->where('conta_id', $conta_id);
+        $proxima = $proxima->max('numero');
+        return $proxima;
     }
 }

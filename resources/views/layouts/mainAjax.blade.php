@@ -5,6 +5,7 @@
 
 
 <link rel="stylesheet" href="{{asset('select2/select2.min.css')}}">
+<link rel="stylesheet" href="{{asset('select2/select2-bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('bootstrap-5.0.2-dist/css/bootstrap.css')}}">
 
 <!-- font awesome -->
@@ -32,3 +33,8 @@
 {{--js secundarios--}}
 <script src="{{asset('js/contas.js')}}"></script>
 <script src="{{asset('js/parcelas.js')}}"></script>
+<script>
+    $( ".select2bootstrap" ).select2({
+        theme: "bootstrap"
+    });
+</script>

@@ -2,3 +2,7 @@ label{
     margin: 0!important;
     padding: 0!important;
 }
+
+.select2-container {
+    width: 100% !important;
+}

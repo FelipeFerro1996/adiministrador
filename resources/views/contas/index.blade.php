@@ -14,7 +14,7 @@
     </div>
     <div class="col-md-2 p-1">
         <a href={{route('cadastroConta')}} class="btn btn-primary w-100 btn-sm">
-            <i class="fa-solid fa-plus fa-lg" title="Cadastrar Cona
+            <i class="fa-solid fa-plus fa-lg" title="Cadastrar Conta
             "></i>
             Novo
         </a>
