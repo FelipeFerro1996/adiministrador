@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             EspeciesSeeder::class,
+            MenusSeeders::class
         ]);
 
         // \App\Models\User::factory(10)->create();
