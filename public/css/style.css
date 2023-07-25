@@ -6,3 +6,7 @@ label{
 .select2-container {
     width: 100% !important;
 }
+
+.swal2-icon{
+    font-size: 12px;
+}

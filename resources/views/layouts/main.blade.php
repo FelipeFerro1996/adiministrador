@@ -61,21 +61,13 @@
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
                 <a href="/" class="brand-link">
-                    {{-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
-                    <span class="brand-text font-weight-light">FAMÍLIA FERRO</span>
+                    <i class="fa-solid fa-circle-user brand-image img-circle elevation-3 mt-2"></i>
+                    <span class="brand-text font-weight-light">Família Ferro</span>
                 </a>
 
                 <!-- Sidebar -->
                 <div class="sidebar">
-
-                    <?php
-                    $url = $_SERVER['REQUEST_URI'];
-                    ?>
-                    <!-- Sidebar Menu -->
-                    <nav class="mt-2">
-                        @include('layouts.menu')
-                    </nav>
-                    <!-- /.sidebar-menu -->
+                    <x-menu-componente />
                 </div>
                 <!-- /.sidebar -->
             </aside>
@@ -119,6 +111,9 @@
 
         {{--jquery Principal--}}
         <script src="{{asset('select2/select2.min.js')}}"></script>
+
+        {{--sweetAlert2--}}
+        <script src="{{asset('sweetAlert2/sweetAlert2.js')}}"></script>
         
         {{--adminlte--}}
         <script src="{{asset('adminlte/dist/js/adminlte.min.js')}}"></script>
@@ -129,6 +124,36 @@
         <script src="{{asset('js/scripts.js')}}"></script>
 
         @yield('javascript')
+
+        @if(session('sucesso'))  
+            <script>
+                $(document).ready(function(){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: "success",
+                        title:"{{session('sucesso')}}",
+                        showConfirmButton: false,
+                        timer: 4000,
+                        toast:true
+                    })
+                })
+            </script>
+        @endif
+
+        @if(session('erro'))  
+            <script>
+                $(document).ready(function(){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: "error",
+                        title:" {{session('erro')}}",
+                        showConfirmButton: false,
+                        timer: 4000,
+                        toast:true
+                    })
+                })
+            </script>
+        @endif
 
         <script>
             $( ".select2bootstrap" ).select2({
