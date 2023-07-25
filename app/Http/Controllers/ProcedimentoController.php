@@ -50,7 +50,7 @@ class ProcedimentoController extends Controller
         // dd($request);
         $procedimento = ServiceProcedimento::insertUpdateProcedimento($request);
 
-        return back()->with(['msg'=>'Procedimento cadastrado com sucesso!','procedimento'=>1]);
+        return back()->with(['sucesso'=>'Procedimento cadastrado com sucesso!','procedimento'=>1]);
 
     }
 
@@ -58,29 +58,29 @@ class ProcedimentoController extends Controller
 
         $procedimento = ServiceProcedimento::insertUpdateProcedimento($request, $id);
 
-        return back()->with(['msg'=>'Procedimento alterado com sucesso!','procedimento'=>1]);
+        return back()->with(['sucesso'=>'Procedimento alterado com sucesso!','procedimento'=>1]);
     }
 
     public function marcarRealizado($id = NULL){
 
         $procedimento = ServiceProcedimento::marcarRealizado($id);
 
-        return back()->with(['msg'=>'Procedimento realizado com sucesso!','procedimento'=>1]);
+        return back()->with(['sucesso'=>'Procedimento realizado com sucesso!','procedimento'=>1]);
     }
 
     public function desmarcarRealizado($id = NULL){
 
         $procedimento = ServiceProcedimento::desmarcarRealizado($id);
-        return back()->with(['msg'=>'Procedimento não realizado!','procedimento'=>1]);
+        return back()->with(['sucesso'=>'Procedimento não realizado!','procedimento'=>1]);
     }
 
     public function destroy($id=NULL){
         $procedimento = ServiceProcedimento::deleteProcedimento($id);
 
         if(!empty($procedimento)){
-            return back()->with(['msg'=>'Procedimento excluído com sucesso!','procedimento'=>1]);
+            return back()->with(['sucesso'=>'Procedimento excluído com sucesso!','procedimento'=>1]);
         }else{
-            return back()->with(['msg'=>'Erro ao excluir o procedimento!','procedimento'=>1]);
+            return back()->with(['sucesso'=>'Erro ao excluir o procedimento!','procedimento'=>1]);
         }
         
     }

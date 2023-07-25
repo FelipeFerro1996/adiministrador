@@ -37,7 +37,7 @@ class PetController extends Controller
 
         $pets = ServicePets::insertUpdatePet(request:$request);
 
-        return redirect(route('listarPets'))->with(['msg'=>'Pet Cadastrado com sucesso']);
+        return redirect(route('listarPets'))->with(['sucesso'=>'Pet Cadastrado com sucesso']);
     }
 
     public function edit($id=NULL){
@@ -52,12 +52,12 @@ class PetController extends Controller
 
     public function destroy($id){
         $pet = ServicePets::excluirPet($id);
-        return redirect(route('listarPets'))->with(['msg'=>'Pet excluído com sucesso']);
+        return redirect(route('listarPets'))->with(['sucesso'=>'Pet excluído com sucesso']);
     }
 
     public function update(PetsRequest $request, $id){
         $pet = ServicePets::insertUpdatePet(id:$id, request:$request);
 
-        return redirect(route('editarPet', ['id', $id]))->with(['msg'=>'Pet atualizado com sucesso']);
+        return redirect(route('editarPet', $pet->id))->with(['sucesso'=>'Pet atualizado com sucesso']);
     }
 }

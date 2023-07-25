@@ -25,7 +25,7 @@ class ParcelaController extends Controller
 
         $parcela = ServiceParcela::insertParcelas($request);
 
-        return redirect('/parcelas')->with(['msg' => 'Parcelas cadastradas com sucesso!', 'tipo' => 'success']);
+        return redirect('/parcelas')->with(['sucesso' => 'Parcelas cadastradas com sucesso!']);
 
     }
 
@@ -72,6 +72,6 @@ class ParcelaController extends Controller
 
         $data = date('Y-m', strtotime($parcela->vencimento));
 
-        return redirect('/parcelas')->with(['msg' => 'Parcela paga!', 'tipo' => 'success', 'mes_parcela' => $data]);
+        return redirect('/parcelas')->with(['sucesso' => 'Parcela paga!', 'mes_parcela' => $data]);
     }
 }

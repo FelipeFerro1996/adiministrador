@@ -53,7 +53,7 @@ class ContaController extends Controller
 
         $conta->save();
 
-        return redirect('/contas')->with(['msg' => 'Conta cadastrado com sucesso!', 'tipo' => 'success']);
+        return redirect('/contas')->with(['sucesso' => 'Conta cadastrado com sucesso!']);
 
     }
 }
