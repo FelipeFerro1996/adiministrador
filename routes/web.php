@@ -4,6 +4,7 @@ use App\Http\Controllers\ContaController;
 use App\Http\Controllers\ParcelaController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\ProcedimentoController;
+use App\Http\Controllers\TarefasController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +57,15 @@ Route::prefix('pets')->group(function () {
 
 });
 
+Route::prefix('tarefas')->group(function() {
+    Route::get('', [TarefasController::class, 'index'])->name('listarTarefas');
+    Route::get('/create', [TarefasController::class, 'create'])->name('cadastroTarefa');
+    Route::post('/cadastrar', [TarefasController::class, 'store'])->name('insertTarefa');
+    Route::get('/{id}', [TarefasController::class, 'edit'])->name('editarTarefa');
+    Route::delete('/{id}', [TarefasController::class, 'destroy'])->name('removeTarefa');
+    Route::put('/update/{id}', [TarefasController::class, 'update'])->name('updateTarefa');
+});
+
 
 //procedimentos
 Route::get('/procedimentos/create/{id_pet?}', [ProcedimentoController::class, 'create']);
@@ -70,4 +80,4 @@ Route::delete('/procedimentos/{id}', [ProcedimentoController::class, 'destroy'])
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
