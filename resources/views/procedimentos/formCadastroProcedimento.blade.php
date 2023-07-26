@@ -64,10 +64,6 @@
                 'class_campo'=>($errors->has('status')?'is-invalid':''),
                 'mensagem'=>($errors->has('status')?$errors->first('status'):''),
             ])
-            <label class="form-label" for="flexSwitchCheckDefault"></label>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" name="status" {{(old('status') == 1 || ($procedimento->status??'') == 1) ? 'checked' : ''}}>
-            </div>
         </div>
     </div>
     <div class="row ">

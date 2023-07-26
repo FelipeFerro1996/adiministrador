@@ -1,4 +1,4 @@
-<form action="{{!empty($pet)? route('atualizaPet', ['id', $pet->id]) : route('insertPet') }}" method="POST">
+<form action="{{!empty($pet->id) ? route('atualizaPet', $pet->id) : route('insertPet') }}" method="POST">
     @csrf
     @if(!empty($pet->id))
         @method('PUT')
