@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ProcedimentoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request){
         $procedimentos = ServiceProcedimento::getAllProcedimentosByBusca($request);
         $pets = ServicePets::getPetsByBusca(nao_paginar:1);

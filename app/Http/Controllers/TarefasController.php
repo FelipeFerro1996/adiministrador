@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class TarefasController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(){
         $tarefas = ServicesTarefas::getAllTarefas();
         $tableHead = ServicesTarefas::getTableHeader();
