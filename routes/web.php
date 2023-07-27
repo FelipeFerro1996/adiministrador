@@ -77,7 +77,7 @@ Route::post('/marcarRealizado/{id}', [ProcedimentoController::class, 'marcarReal
 Route::post('/desmarcarRealizado/{id}', [ProcedimentoController::class, 'desmarcarRealizado']);
 Route::delete('/procedimentos/{id}', [ProcedimentoController::class, 'destroy']);
 
-Auth::routes();
+Auth::routes(['register'=>false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
