@@ -46,7 +46,7 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Navbar Search -->
                     <li class="nav-item">
-                        <form action="">
+                        <form action="{{route('logout')}}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-danger">
                                 <i class="fa-solid fa-power-off" title="Sair"></i>
