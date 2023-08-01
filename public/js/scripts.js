@@ -18,7 +18,7 @@ $(document).ready(function(){
     $('.phone').mask('(00) 00000-0000');
     $('.money').mask('#0.00', {reverse: true});
     
-    $('.excluirForm').click(function(){
+    $('body').on('click','.excluirForm',function(){
         if(confirm('Deseja realmente excluir?')){
             $(this).closest('form').submit();
         }

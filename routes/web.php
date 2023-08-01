@@ -29,7 +29,10 @@ Route::prefix('contas')->group(function () {
    
     Route::get('', [ContaController::class, 'index'])->name('listarContas');
     Route::get('/create', [ContaController::class, 'create'])->name('cadastroConta');
+    Route::get('/{id}', [ContaController::class, 'edit'])->name('editarConta');
     Route::post('/insert', [ContaController::class, 'store'])->name('insertConta');
+    Route::put('/update/{id}', [ContaController::class, 'update'])->name('updateConta');
+    Route::delete('/removeTodasParcelas/{id}', [ContaController::class, 'removeTodasParcelas'])->name('removerParcelasConta');
 
 });
 
@@ -42,6 +45,7 @@ Route::prefix('parcelas')->group(function () {
     Route::get('/{mes}', [ParcelaController::class, 'meselecionado'])->name('parcelasMes');
     Route::get('/tipoCadastro/{tipo}', [ParcelaController::class, 'getCadastroParcelaByTipo']);
     Route::get('/pagarParcela/{id}', [ParcelaController::class, 'pagarParcela']);
+    Route::delete('/delete/{id}', [ParcelaController::class, 'remove'])->name('removeParcela');
 
 });
 

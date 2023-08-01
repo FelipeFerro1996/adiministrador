@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ParcelasRequest;
 use App\Models\Conta;
 use App\Models\Parcela;
+use App\Providers\ServiceContas;
 use App\Providers\ServiceParcela;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,13 @@ class ParcelaController extends Controller
 
     public function store(ParcelasRequest $request){
 
-        $parcela = ServiceParcela::insertParcelas($request);
+        $return = ServiceParcela::insertParcelas($request);
 
-        return redirect('/parcelas')->with(['sucesso' => 'Parcelas cadastradas com sucesso!']);
+        if($return){
+            return redirect('/parcelas')->with(['sucesso' => 'Parcelas cadastradas com sucesso!']);
+        }
+
+        return back()->with(['erro' => 'Erro ao cadastrar as parcelas!']);
 
     }
 
@@ -72,6 +77,24 @@ class ParcelaController extends Controller
 
         $data = date('Y-m', strtotime($parcela->vencimento));
 
-        return redirect('/parcelas')->with(['sucesso' => 'Parcela paga!', 'mes_parcela' => $data]);
+        return back()->with(['sucesso' => 'Parcela paga!', 'mes_parcela' => $data]);
     }
+
+    public function remove($id){
+
+        $parcela = Parcela::find($id);
+
+        $return = ServiceParcela::removeParcela($id);
+
+        if($return){
+
+            $conta = ServiceContas::atualizaParcelasByConta($parcela->conta_id);
+
+            return back()->with(['sucesso' => 'Parcela removida com sucesso!']);
+        }
+
+        return back()->with(['erro' => 'Erro ao remover a parcela!']);
+
+    }
+
 }

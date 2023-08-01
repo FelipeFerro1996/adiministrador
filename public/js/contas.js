@@ -24,4 +24,10 @@ $(document).ready(()=>{
     })
 
     $('#total_parcela').mask('#,##0.00', {reverse:true})
+
+    $('body').on('click', '#RemoverTodasParcelas', function(){
+        if(confirm('deseja realmente excluir todas as parcelas dessa conta?')){
+            $(this).closest('form').submit()
+        }
+    });
 });
