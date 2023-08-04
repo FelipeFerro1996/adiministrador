@@ -128,13 +128,18 @@ class ServiceContas extends ServiceProvider
         $parcelas = $parcelas->orderBy('vencimento', 'ASC');
         $parcelas = $parcelas->get();
 
+        $total = 0;
         foreach($parcelas as $key => &$parcela){
+
+            $total = $parcela->valor + $total;
+
             $parcela->numero = $key+1;
             $parcela->save();
         }
 
         $conta = Conta::find($conta_id);
         $conta->parcelas = $parcelas->count();
+        $conta->total = $total;
         $conta->save();
 
     }

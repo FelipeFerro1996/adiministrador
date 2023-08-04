@@ -49,13 +49,15 @@
                             ])
                         </div>
                     </div>
-        
+
                     <div class="row mt-3">
                         <div class="col-md-2 col-sm-12 p-1">
                             <button type="submit" class="btn btn-success w-100">
                                 {{!empty($conta->id) ? 'Atualizar' : 'Cadastrar'}}
                             </button>
                         </div>
+
+                </form>
                         <div class="col-md-3 p-1">
                             @if(!empty($conta->id))
                                 <form action="{{route('removerParcelasConta', $conta->id)}}" method="POST">
@@ -70,8 +72,7 @@
                             @endif
                         </div>
                     </div>
-        
-                </form>
+
             </div>
         </div>
     </div>
