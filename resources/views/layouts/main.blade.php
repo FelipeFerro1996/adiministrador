@@ -117,6 +117,7 @@
         
         {{--adminlte--}}
         <script src="{{asset('adminlte/dist/js/adminlte.min.js')}}"></script>
+        <script src="{{asset('adminlte/plugins/chart.js/Chart.min.js')}}"></script>
 
         {{--js secundarios--}}
         <script src="{{asset('js/contas.js')}}"></script>
