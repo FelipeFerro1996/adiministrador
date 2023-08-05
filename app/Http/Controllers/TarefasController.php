@@ -69,4 +69,16 @@ class TarefasController extends Controller
             return back()->with('erro', 'Erro ao remover a tarefa');
         }
     }
+
+    public function marcarDesmarcarTarefaRealizada($id = NULL, $status=NULL){
+
+        $return = ServicesTarefas::marcarDesmarcarTarefaRealizada($id, $status);
+
+        if($return){
+
+            return back()->with(['sucesso'=>'Tarefa '.($status == 1 ? 'Desmarcada' : 'Marcada').' como realizada!']);
+        }
+
+        return back()->with(['erro'=>'Erro ao alterar o status da tarefa!']);
+    }
 }

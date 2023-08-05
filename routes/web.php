@@ -68,6 +68,7 @@ Route::prefix('tarefas')->group(function() {
     Route::get('/{id}', [TarefasController::class, 'edit'])->name('editarTarefa');
     Route::delete('/{id}', [TarefasController::class, 'destroy'])->name('removeTarefa');
     Route::put('/update/{id}', [TarefasController::class, 'update'])->name('updateTarefa');
+    Route::post('/alterarStatus/{id}/{status}', [TarefasController::class, 'marcarDesmarcarTarefaRealizada'])->name('alterarStatusTarefa');
 });
 
 

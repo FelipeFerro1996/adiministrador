@@ -23,8 +23,12 @@ class ServicesTarefas extends ServiceProvider
         //
     }
 
-    static function getAllTarefas($request=NULL, $nao_paginar=NULL){
+    static function getAllTarefas($request=NULL, $nao_paginar=NULL, $status=NULL){
         $tarefas = new Tarefa();
+
+        if(!empty($status)){
+            $tarefas = $tarefas->where('status', $status);
+        }
 
         if(!empty($nao_paginar)){
             $tarefas = $tarefas->get();
@@ -35,6 +39,13 @@ class ServicesTarefas extends ServiceProvider
             foreach($tarefas as $tarefa){
                 $tarefa->botaoEditar = view('componentes.botaoEditarComponente', ['rota'=>route('editarTarefa', [ 'id'=>$tarefa->id])]);
                 $tarefa->botaoDelete = view('componentes.botaoDeleteComponente', ['rota'=>route('removeTarefa', ['id'=>$tarefa->id])]);
+                $tarefa->botaoStatus = view('componentes.botaoStatusComponente', [
+                    'rota' => route('alterarStatusTarefa', [
+                        'id'=>$tarefa->id, 
+                        'status'=>($tarefa->status == 1 ? 2 : 1)
+                    ]), 
+                    'type' => $tarefa->status
+                ]);
             }
 
         }
@@ -81,6 +92,10 @@ class ServicesTarefas extends ServiceProvider
                 'descricao'=>'Editar',
             ],
             (object)[
+                'campo'=>'botaoStatus',
+                'descricao'=>'Status',
+            ],
+            (object)[
                 'campo'=>'botaoDelete',
                 'descricao'=>'Excluir',
             ],
@@ -93,5 +108,11 @@ class ServicesTarefas extends ServiceProvider
         $tarefa = Tarefa::find($id);
 
         return $tarefa->delete();
+    }
+
+    static function marcarDesmarcarTarefaRealizada($id, $status){
+        $tarefa = Tarefa::find($id);
+        $tarefa->status = $status;
+        return $tarefa->save();
     }
 }
