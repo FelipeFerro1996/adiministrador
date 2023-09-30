@@ -36,8 +36,13 @@ class ProcedimentoController extends Controller
         }
         
         $pets = ServicePets::getPetsByBusca(nao_paginar:1);
+        $descricao_procedimentos = ServiceProcedimento::getDescricoesAgrupadas();
 
-        return view('procedimentos.formCadastroProcedimento', ['pet'=>$pet, 'pets'=>$pets]);
+        return view('procedimentos.formCadastroProcedimento', [
+            'pet'=>$pet, 
+            'pets'=>$pets,
+            'descricao_procedimentos'=>$descricao_procedimentos??[]
+        ]);
 
     } 
 
@@ -47,8 +52,14 @@ class ProcedimentoController extends Controller
         $pet = ServicePets::getPetById($procedimento->pet_id);
 
         $pets = ServicePets::getPetsByBusca(nao_paginar:1);
+        $descricao_procedimentos = ServiceProcedimento::getDescricoesAgrupadas();
 
-        return view('procedimentos.formCadastroProcedimento', ['pet'=>$pet, 'procedimento'=>$procedimento, 'pets'=>$pets]);
+        return view('procedimentos.formCadastroProcedimento', [
+            'pet'=>$pet, 
+            'procedimento'=>$procedimento, 
+            'pets'=>$pets,
+            'descricao_procedimentos'=>$descricao_procedimentos
+        ]);
 
     }
 

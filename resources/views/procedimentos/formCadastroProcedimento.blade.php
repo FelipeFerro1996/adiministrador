@@ -20,8 +20,9 @@
                 'label_descricao'=>'Descrição',
                 'id_name'=>'descricao',
                 'required'=>'required',
-                'tipo'=>'input',
-                'type'=>'text',
+                'tipo'=>'datalist',
+                'objeto'=>$descricao_procedimentos??[],
+                'campo_valor'=>'descricao',
                 'value'=>($procedimento->descricao??old('descricao')??''),
                 'class_campo'=>($errors->has('descricao')?'is-invalid':''),
                 'mensagem'=>($errors->has('descricao')?$errors->first('descricao'):''),
@@ -63,6 +64,17 @@
                 'campo_descricao'=>'descricao',
                 'class_campo'=>($errors->has('status')?'is-invalid':''),
                 'mensagem'=>($errors->has('status')?$errors->first('status'):''),
+            ])
+        </div>
+        <div class="col-md-12 p-2">
+            @include('componentes.campoDinamicoComponente', [
+                'label_descricao'=>'Observações',
+                'id_name'=>'observacoes',
+                'required'=>'',
+                'tipo'=>'textarea',
+                'value'=>($procedimento->observacoes??old('observacoes')??''),
+                'class_campo'=>($errors->has('observacoes')?'is-invalid':''),
+                'mensagem'=>($errors->has('observacoes')?$errors->first('observacoes'):''),
             ])
         </div>
     </div>

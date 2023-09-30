@@ -68,6 +68,7 @@ class ServiceProcedimento extends ServiceProvider
         $procedimento->valor = floatval(str_replace(',', '', $request->valor));
         $procedimento->status = !empty($request->status) ? 1 : 0;
         $procedimento->pet_id = $request->id_pet;
+        $procedimento->observacoes = $request->observacoes;
 
         $procedimento->save();
 
@@ -105,5 +106,13 @@ class ServiceProcedimento extends ServiceProvider
         $procedimento = new Procedimento();
         $procedimento = $procedimento->find($id);
         return $procedimento->delete();
+    }
+
+    static function getDescricoesAgrupadas(){
+        $procedimentos = new Procedimento();
+        $procedimentos = $procedimentos->select('descricao');
+        $procedimentos = $procedimentos->groupBy('descricao');
+        $procedimentos = $procedimentos->get();
+        return $procedimentos;
     }
 }
